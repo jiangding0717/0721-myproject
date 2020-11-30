@@ -36,6 +36,7 @@
             type="text"
             id="autocomplete"
             class="input-error input-xxlarge"
+            v-model="searchText"
           />
           <button
             class="sui-btn btn-xlarge btn-danger"
@@ -53,9 +54,31 @@
 <script>
 export default {
   name: 'Header',
+  data() {
+    return {
+      searchText: '',
+    };
+  },
   methods: {
     search() {
-      this.$router.push('/search');
+      // const { searchText } = this;
+      // //判断是否添加params参数
+      // const params = searchText ? `/${searchText}` : '';
+      // //生成专跳路径
+      // const location = '/search' + params;
+      // this.$router.push(location);
+
+      //命名路由
+      const { searchText } = this;
+      const location = {
+        name: 'search',
+      };
+      if (searchText) {
+        location.params = {
+          searchText,
+        };
+      }
+      this.$router.push(location);
     },
   },
 };

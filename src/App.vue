@@ -1,9 +1,8 @@
 <template>
   <div>
     <Header />
-    App...
     <router-view></router-view>
-    <Footer />
+    <Footer v-if="!$route.meta.isFooterHide" />
   </div>
 </template>
 
