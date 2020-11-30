@@ -26,8 +26,24 @@ import ListContainer from './ListContainer/ListContainer';
 import Rank from './Rank/Rank';
 import TodayRecommend from './TodayRecommend/TodayRecommend';
 import TypeNav from '@comps/TypeNav';
+//store发送请求过来的楼层
+import { mapState, mapActions } from 'vuex';
 export default {
   name: 'Home',
+  //mapState数据
+  computed: {
+    ...mapState({
+      floors: (state) => state.home.floors,
+    }),
+  },
+  //mapActions
+  methods: {
+    ...mapActions(['getFloors']),
+  },
+  //发送请求
+  mounted() {
+    this.getFloors();
+  },
   components: {
     Brand,
     Floor,

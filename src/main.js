@@ -8,6 +8,10 @@ import './style/reset.css'
 import router from './router'
 //引入vuex组件
 import store from './store'
+// 引入mockServer，为了加载里面代码
+// 里面代码一旦加载，就去启动mock服务器，从而拦截相应的请求
+import './mock/mockServer'
+
 import './plugins/element.js'
 Vue.config.productionTip = false
 
