@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url('/src/assets/fonts/iconfont.eot?t=1606913804790'); /* IE9 */
+  src: url('/src/assets/fonts/iconfont.eot?t=1606913804790#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */
+      url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAANQAAsAAAAAB7QAAAMDAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDIgqCPIIQATYCJAMUCwwABCAFhG0HbxuzBhEVlPNkPwrc2BnWH/LJJTjPXOQUWqT/fwRPuR/2Ntn8pkRwQECOWKg7i0IxuNbdzA+AzakFdyyABEgm7PGWj3+eIbmqh3yK0vHHvaoZ2wI2n32L25yTcgEMBygU3BuTLrIWpFzXLrK7ArHI+xAgijxqkL79h47Fo5jLBJClixbMwme8KMonPEJQsVeRkzi8OWReASeCn5c/NIkHg7OYa0fO7zeXnt+XfD9kd4Y7p3ooeOOZAf4QWKAGUJDZldap2ChagyVKvUxpAAIUwXxf+v1QGI4pORhoYZ289VMN9p+HBJj5MQD0xDGF70scBALflyIw8P0gAgvfD/FfSL4DICobHw0spPgSmVjvkJ0dF7fl/OGUuW7X3cO30fnnr9++lDov9dyRC+kLLlzZQmk1486mzD178c6R9AV6zhtzT9y8c9EX7l3ewKXvvB0Vd/jurlaTjsyh87vuRccfubOz5drDHQt3Xsq80FJ4JLYwqzD2SDj2zqnkzIuLH+tHxewrokXPK+goD9LWQz6ZUmIS/2RD4e3oZ80Z5M6aOPF14aWEJ8kbi17/T3xVxKdrxsaNAISt9qiNhrAtYI8BsPvMCvse0/N3/A7/l6O5M+K7tvloBeDNv8cx2Bu2Kv1iHgNg3svnAbtUE5g6p0q7w1Xsjmxg2ABRVgBCTGcS78eRp4KLQfCk9rBHkJuAxVOCVnwNOKJpgQBPD4iimgGHo0lmNRbRSKCKfQiEBB6BIY6nYEngNVrx78CRxj8ISBALUYyX5DOjKRMMr/oo9oYTDD/gURLZBluFhTd0S+g1LQho/6gzB6Ctmnziigl1jA3z23VmBKQS4YIewxAEssoLR6ueZvlc11T1RdUosVjRR7E3nGD4AY+SyOtvq8L339AtodeGjir7P+rMw0NbNQD0VZpAHdfyzPx2nRkBqUS4oFkYgkCunvXC0apnj3A+11Yvgkqr+eXxGQ8AUZgbnRixouIkIG4u62mOYknlJJ+0SZct+dCryiesLYlD4OROGqeVQNMUBQA=')
+      format('woff2'),
+    url('/src/assets/fonts/iconfont.woff?t=1606913804790') format('woff'),
+    url('/src/assets/fonts/iconfont.ttf?t=1606913804790') format('truetype'),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+      url('/src/assets/fonts/iconfont.svg?t=1606913804790#iconfont')
+      format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-direction-down:before {
+  content: '\e66b';
+}
+
+.icon-direction-up:before {
+  content: '\e66c';
+}
+
+.icon-arrow-up-filling:before {
+  content: '\e688';
+}
+
+.icon-arrow-down-filling:before {
+  content: '\e689';
+}

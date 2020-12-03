@@ -82,8 +82,16 @@ export default {
       if (categoryName) {
         location.query = this.$route.query;
       }
-      this.$router.push(location);
+
+      this.$router.replace(location);
     },
+  },
+
+  //清空search
+  mounted() {
+    this.$bus.$on('clearKeyword', () => {
+      this.searchText = '';
+    });
   },
 };
 </script>
