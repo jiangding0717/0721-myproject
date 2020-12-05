@@ -5,6 +5,7 @@ import Home from '../views/Home'
 import Login from '../views/Login'
 import Register from '../views/Register'
 import Search from '../views/Search'
+import Deatil from '../views/Detail'
 
 //重写push和replace方法
 //目的：为了让编程导航重复点击不报错
@@ -58,6 +59,14 @@ export default new VueRouter({
       //?代表判断params参数是否可选
       path: '/search/:searchText?',
       component: Search
+    },
+    {
+      path: '/detail/:id',
+      component: Deatil
     }
-  ]
+  ],
+  //每次 切换路由页面滚动条位置
+  scrollBehavior () {
+    return { x: 0, y: 0 }
+  }
 })

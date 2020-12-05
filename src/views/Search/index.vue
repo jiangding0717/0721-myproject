@@ -110,9 +110,9 @@
               <li class="yui3-u-1-5" v-for="goods in goodsList" :key="goods.id">
                 <div class="list-wrap">
                   <div class="p-img">
-                    <a href="item.html" target="_blank"
-                      ><img :src="goods.defaultImg"
-                    /></a>
+                    <router-link :to="`/detail/${goods.id}`"
+                      >{{ goods.title }}<img :src="goods.defaultImg"
+                    /></router-link>
                   </div>
                   <div class="price">
                     <strong>
@@ -121,12 +121,9 @@
                     </strong>
                   </div>
                   <div class="attr">
-                    <a
-                      target="_blank"
-                      href="item.html"
-                      title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
-                      >{{ goods.title }}</a
-                    >
+                    <router-link target="_blank" :to="`/detail/${goods.id}`">{{
+                      goods.title
+                    }}</router-link>
                   </div>
                   <div class="commit">
                     <i class="command">已有<span>2000</span>人评价</i>
@@ -147,7 +144,7 @@
             </ul>
           </div>
           <!-- 分页器 -->
-          <el-pagination
+          <!-- <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :page-sizes="[5, 10, 15, 20]"
@@ -156,7 +153,19 @@
             layout="prev, pager, next,total, sizes,  jumper"
             :total="total"
           >
-          </el-pagination>
+          </el-pagination> -->
+          <!--
+          current-page 当前页码 
+          pager-count   显示按钮的数量
+          page-size    每页条数
+          total    总数
+           -->
+          <Pagination
+            :current-page="options.pageNo"
+            :pager-count="7"
+            :page-size="5"
+            :total="11"
+          />
         </div>
       </div>
     </div>
@@ -167,6 +176,7 @@
 import SearchSelector from './SearchSelector/SearchSelector';
 import { mapGetters, mapActions } from 'vuex';
 import TypeNav from '@comps/TypeNav';
+import Pagination from '@comps/Pagination';
 export default {
   name: 'Search',
   data() {
@@ -255,6 +265,8 @@ export default {
     },
     //添加品牌更新数据
     addTrademark(trademark) {
+      //判断有数据就不用发送请求了
+      if (this.options.trademark) return;
       this.options.trademark = trademark;
       //重新发送请求跟新数据
       this.updateProductList();
@@ -266,6 +278,8 @@ export default {
     },
     //添加品牌属性并更新数据
     addProp(prop) {
+      //判断有数据就不用再添加了
+      if (this.options.props.indexOf(prop) > -1) return;
       this.options.props.push(prop);
       this.updateProductList();
     },
@@ -326,6 +340,7 @@ export default {
   components: {
     SearchSelector,
     TypeNav,
+    Pagination,
   },
 };
 </script>
