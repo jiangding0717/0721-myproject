@@ -1,11 +1,11 @@
 <template>
   <div class="spec-preview">
     <img :src="imgUrl" />
-    <div class="event"></div>
+    <div class="event" ref="event" @mousemove="handleMove"></div>
     <div class="big">
-      <img :src="bigImgUrl" />
+      <img :src="bigImgUrl" ref="bigImg" />
     </div>
-    <div class="mask"></div>
+    <div class="mask" ref="mask"></div>
   </div>
 </template>
 
@@ -15,6 +15,37 @@ export default {
   props: {
     imgUrl: String,
     bigImgUrl: String,
+  },
+  mounted() {
+    //获取蒙版的宽度 该数据获取一次
+    this.maskWidth = this.$refs.event.clientWidth / 2;
+    console.log(this.maskWidth);
+  },
+  methods: {
+    //移入
+    handleMove(e) {
+      //鼠标的坐标
+      const { offsetX, offsetY } = e;
+      console.log(offsetX, offsetY);
+      //获取蒙版的宽度
+      const maskWidth = this.maskWidth;
+      //蒙版对象
+      const maskDiv = this.$refs.mask;
+      //获取大图对象
+      const bigImg = this.$refs.bigImg;
+      let left = 0;
+      let top = 0;
+      left = offsetX - maskWidth / 2;
+      top = offsetY - maskWidth / 2;
+      left = left < 0 ? 0 : left > maskWidth ? maskWidth : left;
+      top = top < 0 ? 0 : top > maskWidth ? maskWidth : top;
+      //蒙版移动的位置
+      maskDiv.style.left = left + 'px';
+      maskDiv.style.top = top + 'px';
+      //大图的位置
+      bigImg.style.left = -left * 2 + 'px';
+      bigImg.style.top = -top * 2 + 'px';
+    },
   },
 };
 </script>
