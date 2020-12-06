@@ -21,7 +21,6 @@
 
 <script>
 import Swiper, { Navigation, Pagination, Autoplay } from 'swiper';
-import 'swiper/swiper-bundle.min.css';
 //需要使用功能
 Swiper.use([Navigation, Pagination, Autoplay]);
 export default {

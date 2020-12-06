@@ -16,9 +16,28 @@
         <!-- 左侧放大镜区域 -->
         <div class="previewWrap">
           <!--放大镜效果-->
-          <Zoom />
+          <!-- 在zoom组件展示 -->
+          <Zoom
+            :imgUrl="
+              skuInfo.skuImageList &&
+              skuInfo.skuImageList[currentImgIndex] &&
+              skuInfo.skuImageList[currentImgIndex].imgUrl
+            "
+            :bigImgUrl="
+              skuInfo.skuImageList &&
+              skuInfo.skuImageList[currentImgIndex] &&
+              skuInfo.skuImageList[currentImgIndex].imgUrl
+            "
+          />
+          <!-- <Zoom
+            :imgUrl="skuInfo.skuImageList?.[currentImgIndex]?.imgUrl"
+            :bigImgUrl="skuInfo.skuImageList?.[currentImgIndex]?.imgUrl"
+          /> -->
           <!-- 小图列表 -->
-          <ImageList />
+          <ImageList
+            :skuImageList="skuInfo.skuImageList"
+            :updateCurrentImgIndex="updateCurrentImgIndex"
+          />
         </div>
         <!-- 右侧选择区域布局 -->
         <div class="InfoWrap">
@@ -32,11 +51,11 @@
             <div class="priceArea">
               <div class="priceArea1">
                 <div class="title">
-                  {{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格价}}
+                  价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格
                 </div>
                 <div class="price">
                   <i>¥</i>
-                  <em>{{skuInfo.price}}</em>
+                  <em>{{ skuInfo.price }}</em>
                   <span>降价通知</span>
                 </div>
                 <div class="remark">
@@ -360,12 +379,22 @@ import TypeNav from '@comps/TypeNav';
 export default {
   name: 'Detail',
 
+  data() {
+    return {
+      //定义一个数据当前选择图片的下标
+      currentImgIndex: 0,
+    };
+  },
   //计算属性
   computed: {
     ...mapGetters(['categoryView', 'spuSaleAttrList', 'skuInfo']),
   },
   methods: {
     ...mapActions(['getProductDetail']),
+    //定义一个数据
+    updateCurrentImgIndex(index) {
+      this.currentImgIndex = index;
+    },
   },
   mounted() {
     this.getProductDetail(this.$route.params.id);
