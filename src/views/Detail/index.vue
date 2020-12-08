@@ -126,11 +126,15 @@
             </div>
             <div class="cartWrap">
               <div class="controls">
-                <input autocomplete="off" class="itxt" />
-                <a href="javascript:" class="plus">+</a>
-                <a href="javascript:" class="mins">-</a>
+                <el-input-number
+                  class="input-number"
+                  v-model="skuNum"
+                  controls-position="right"
+                  :min="1"
+                  :max="100"
+                ></el-input-number>
               </div>
-              <div class="add">
+              <div class="add" @click="addCart">
                 <a href="javascript:">加入购物车</a>
               </div>
             </div>
@@ -383,6 +387,7 @@ export default {
     return {
       //定义一个数据当前选择图片的下标
       currentImgIndex: 0,
+      skuNum: 1, //商品数量
     };
   },
   //计算属性
@@ -390,14 +395,30 @@ export default {
     ...mapGetters(['categoryView', 'spuSaleAttrList', 'skuInfo']),
   },
   methods: {
-    ...mapActions(['getProductDetail']),
-    //定义一个数据
+    ...mapActions(['getProductDetail', 'updateCartCount']),
+    //更新选中图片的下标
     updateCurrentImgIndex(index) {
       this.currentImgIndex = index;
+    },
+    //添加购物车
+    async addCart() {
+      try {
+        //发送求情 专跳购物车
+        //actions返回一个promise对象才会等待它执行
+        await this.updateCartCount({
+          skuId: this.skuInfo.id,
+          skuNum: this.skuNum,
+        });
+        //点击添加转跳到这个路由
+        this.$router.push(`/addcartsuccess?skuNum=${this.skuNum}`);
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
   mounted() {
     this.getProductDetail(this.$route.params.id);
+    console.log(this.getProductDetail);
   },
   components: {
     ImageList,
@@ -575,6 +596,9 @@ export default {
               position: relative;
               float: left;
               margin-right: 15px;
+              .input-number {
+                width: 150px;
+              }
 
               .itxt {
                 width: 38px;
@@ -612,6 +636,7 @@ export default {
 
             .add {
               float: left;
+              margin-left: 100px;
 
               a {
                 background-color: #e1251b;

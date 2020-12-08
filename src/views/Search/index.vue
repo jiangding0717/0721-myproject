@@ -161,6 +161,7 @@
           total    总数
            -->
           <Pagination
+            @current-change="handleCurrentChange"
             :current-page="options.pageNo"
             :pager-count="7"
             :page-size="5"

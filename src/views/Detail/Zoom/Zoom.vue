@@ -19,14 +19,14 @@ export default {
   mounted() {
     //获取蒙版的宽度 该数据获取一次
     this.maskWidth = this.$refs.event.clientWidth / 2;
-    console.log(this.maskWidth);
+    // console.log(this.maskWidth);
   },
   methods: {
     //移入
     handleMove(e) {
       //鼠标的坐标
       const { offsetX, offsetY } = e;
-      console.log(offsetX, offsetY);
+      // console.log(offsetX, offsetY);
       //获取蒙版的宽度
       const maskWidth = this.maskWidth;
       //蒙版对象

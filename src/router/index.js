@@ -6,6 +6,13 @@ import Login from '../views/Login'
 import Register from '../views/Register'
 import Search from '../views/Search'
 import Deatil from '../views/Detail'
+import AddCartSuccess from '../views/AddCartSuccess'
+import ShopCart from '../views/ShopCart'
+//支付页面
+import Pay from '@views/Pay'
+import PaySuccess from '@views/PaySuccess'
+import Trade from '@views/Trade'
+import Center from '@views/Center'
 
 //重写push和replace方法
 //目的：为了让编程导航重复点击不报错
@@ -63,7 +70,37 @@ export default new VueRouter({
     {
       path: '/detail/:id',
       component: Deatil
-    }
+    },
+    {
+      name: 'addcartsuccess',
+      path: '/addcartsuccess',
+      component: AddCartSuccess
+    },
+    {
+      name: 'shopcart',
+      path: '/shopcart',
+      component: ShopCart
+    },
+    {
+      name: 'pay',
+      path: '/pay',
+      component: Pay
+    },
+    {
+      name: 'paysuccess',
+      path: '/paysuccess',
+      component: PaySuccess
+    },
+    {
+      name: 'trade',
+      path: '/trade',
+      component: Trade
+    },
+    {
+      name: 'center',
+      path: '/center/myorder',
+      component: Center
+    },
   ],
   //每次 切换路由页面滚动条位置
   scrollBehavior () {

@@ -3,10 +3,20 @@
 */
 import axios from 'axios'
 import { Message } from 'element-ui'
+import getUserTempId from '@utils/getUserTempld'
+//store就是vuex的store 也是this.$store
+import store from '../store'
 
 //引入进度条
 import NProgress from 'nprogress'
 import "nprogress/nprogress.css";
+import { v4 as uuidv4 } from 'uuid'; //v4重命名为uuidv4
+//使用
+uuidv4()
+
+//只要requset文件被加载了就执行一次 以后就不会触发了
+const userTempId = getUserTempId()
+
 const instance = axios.create({
   baseURL: '/api', //公共的基础路径
   headers: {},
@@ -18,6 +28,15 @@ instance.interceptors.request.use(
   (config) => {
     //开始进度条
     NProgress.start()
+
+    // 修改config，用来添加公共的请求参数
+    const token = store.state.user.token;
+    if (token) {
+      config.headers.token = token;
+    }
+
+    config.headers.userTempId = userTempId;
+
 
     return config
   }
